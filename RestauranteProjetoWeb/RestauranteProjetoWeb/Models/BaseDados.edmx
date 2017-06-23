@@ -13,7 +13,74 @@
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="BaseDados" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
         <EntityContainer Name="BaseDadosContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clientes" EntityType="BaseDados.Cliente" />
+          <EntitySet Name="Donos" EntityType="BaseDados.Dono" />
+          <EntitySet Name="Restaurantes" EntityType="BaseDados.Restaurante" />
+          <EntitySet Name="Mesas" EntityType="BaseDados.Mesa" />
+          <EntitySet Name="Reservas" EntityType="BaseDados.Reserva" />
         </EntityContainer>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Telefone" Type="String" Nullable="false" MaxLength="15" />
+          <Property Name="CPF" Type="String" Nullable="false" MaxLength="11" />
+          <Property Name="Cidade" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Pais" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Ativo" Type="Boolean" Nullable="false" />
+          <Property Name="Senha" Type="String" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Dono">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Telefone" Type="String" Nullable="false" MaxLength="15" />
+          <Property Name="CPF" Type="String" Nullable="false" MaxLength="11" />
+          <Property Name="Cidade" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Pais" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Senha" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Ativo" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Restaurante">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="CNPJ" Type="String" Nullable="false" MaxLength="14" />
+          <Property Name="Endereco" Type="String" Nullable="false" MaxLength="Max" />
+          <Property Name="Cidade" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Pais" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Telefone" Type="String" Nullable="false" MaxLength="15" />
+          <Property Name="Gastronomia" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Ativo" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mesa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nomenc" Type="String" Nullable="false" MaxLength="10" />
+          <Property Name="QuantidadePessoas" Type="Int32" Nullable="false" />
+          <Property Name="Ativo" Type="Boolean" Nullable="false" />
+          <Property Name="Reservada" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reserva">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Data" Type="DateTime" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
