@@ -1,0 +1,58 @@
+﻿@model BaseModels.Reserva
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Reserva</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model._Cliente.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model._Cliente.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model._Mesa.MesaID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model._Mesa.MesaID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model._Restaurante.NameOnwer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model._Restaurante.NameOnwer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Qtdpessoa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Qtdpessoa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ReservaID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

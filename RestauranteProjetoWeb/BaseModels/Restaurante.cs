@@ -14,6 +14,7 @@ namespace BaseModels
         public string Phonenumber { get; set; }
         [Required]
         public string RestaurantName { get; set; }
+
         [DataType(DataType.MultilineText)]
         public string Descricao { get; set; }
 
