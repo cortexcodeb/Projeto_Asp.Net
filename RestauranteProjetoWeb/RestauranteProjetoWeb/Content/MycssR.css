@@ -1,0 +1,12 @@
+﻿body {
+}
+
+dt{
+    font-family:'Times New Roman';
+    color: yellow;
+    font-size:12px;
+}
+i.glyphicon.minhaclasse {
+    font-size: 6em;
+    color:red;
+}
