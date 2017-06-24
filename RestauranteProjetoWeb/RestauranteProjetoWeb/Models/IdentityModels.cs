@@ -29,5 +29,7 @@ namespace RestauranteProjetoWeb.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<BaseModels.Restaurante> Restaurantes { get; set; }
     }
 }

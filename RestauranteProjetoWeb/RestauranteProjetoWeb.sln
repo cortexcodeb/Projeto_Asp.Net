@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26430.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestauranteProjetoWeb", "RestauranteProjetoWeb\RestauranteProjetoWeb.csproj", "{1BAE80FA-A65D-430E-BE43-089F208C0F1F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseModels", "BaseModels\BaseModels.csproj", "{D1773AAD-957B-47FA-882E-F07FA8237E78}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{1BAE80FA-A65D-430E-BE43-089F208C0F1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1BAE80FA-A65D-430E-BE43-089F208C0F1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1BAE80FA-A65D-430E-BE43-089F208C0F1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1773AAD-957B-47FA-882E-F07FA8237E78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1773AAD-957B-47FA-882E-F07FA8237E78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1773AAD-957B-47FA-882E-F07FA8237E78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1773AAD-957B-47FA-882E-F07FA8237E78}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
