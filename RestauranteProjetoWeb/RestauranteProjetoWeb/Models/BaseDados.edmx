@@ -18,6 +18,26 @@
           <EntitySet Name="Restaurantes" EntityType="BaseDados.Restaurante" />
           <EntitySet Name="Mesas" EntityType="BaseDados.Mesa" />
           <EntitySet Name="Reservas" EntityType="BaseDados.Reserva" />
+          <AssociationSet Name="DonoRestaurante" Association="BaseDados.DonoRestaurante">
+            <End Role="Dono" EntitySet="Donos" />
+            <End Role="Restaurante" EntitySet="Restaurantes" />
+          </AssociationSet>
+          <AssociationSet Name="RestauranteMesa" Association="BaseDados.RestauranteMesa">
+            <End Role="Restaurante" EntitySet="Restaurantes" />
+            <End Role="Mesa" EntitySet="Mesas" />
+          </AssociationSet>
+          <AssociationSet Name="RestauranteReserva" Association="BaseDados.RestauranteReserva">
+            <End Role="Restaurante" EntitySet="Restaurantes" />
+            <End Role="Reserva" EntitySet="Reservas" />
+          </AssociationSet>
+          <AssociationSet Name="ClienteReserva" Association="BaseDados.ClienteReserva">
+            <End Role="Cliente" EntitySet="Clientes" />
+            <End Role="Reserva" EntitySet="Reservas" />
+          </AssociationSet>
+          <AssociationSet Name="MesaReserva" Association="BaseDados.MesaReserva">
+            <End Role="Mesa" EntitySet="Mesas" />
+            <End Role="Reserva" EntitySet="Reservas" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Cliente">
           <Key>
@@ -33,6 +53,7 @@
           <Property Name="Email" Type="String" Nullable="false" MaxLength="50" />
           <Property Name="Ativo" Type="Boolean" Nullable="false" />
           <Property Name="Senha" Type="String" Nullable="false" MaxLength="50" />
+          <NavigationProperty Name="Reservas" Relationship="BaseDados.ClienteReserva" FromRole="Cliente" ToRole="Reserva" />
         </EntityType>
         <EntityType Name="Dono">
           <Key>
@@ -48,6 +69,7 @@
           <Property Name="Email" Type="String" Nullable="false" MaxLength="50" />
           <Property Name="Senha" Type="String" Nullable="false" MaxLength="50" />
           <Property Name="Ativo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Restaurantes" Relationship="BaseDados.DonoRestaurante" FromRole="Dono" ToRole="Restaurante" />
         </EntityType>
         <EntityType Name="Restaurante">
           <Key>
@@ -63,6 +85,10 @@
           <Property Name="Telefone" Type="String" Nullable="false" MaxLength="15" />
           <Property Name="Gastronomia" Type="String" Nullable="false" MaxLength="50" />
           <Property Name="Ativo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Dono" Relationship="BaseDados.DonoRestaurante" FromRole="Restaurante" ToRole="Dono" />
+          <Property Name="DonoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Mesas" Relationship="BaseDados.RestauranteMesa" FromRole="Restaurante" ToRole="Mesa" />
+          <NavigationProperty Name="Reservas" Relationship="BaseDados.RestauranteReserva" FromRole="Restaurante" ToRole="Reserva" />
         </EntityType>
         <EntityType Name="Mesa">
           <Key>
@@ -73,6 +99,10 @@
           <Property Name="QuantidadePessoas" Type="Int32" Nullable="false" />
           <Property Name="Ativo" Type="Boolean" Nullable="false" />
           <Property Name="Reservada" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Restaurante" Relationship="BaseDados.RestauranteMesa" FromRole="Mesa" ToRole="Restaurante" />
+          <Property Name="RestauranteId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Reserva" Relationship="BaseDados.MesaReserva" FromRole="Mesa" ToRole="Reserva" />
+          <Property Name="ReservaId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Reserva">
           <Key>
@@ -80,7 +110,72 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Data" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Restaurante" Relationship="BaseDados.RestauranteReserva" FromRole="Reserva" ToRole="Restaurante" />
+          <Property Name="RestauranteId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="BaseDados.ClienteReserva" FromRole="Reserva" ToRole="Cliente" />
+          <Property Name="ClienteId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Mesas" Relationship="BaseDados.MesaReserva" FromRole="Reserva" ToRole="Mesa" />
         </EntityType>
+        <Association Name="DonoRestaurante">
+          <End Type="BaseDados.Dono" Role="Dono" Multiplicity="1" />
+          <End Type="BaseDados.Restaurante" Role="Restaurante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dono">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Restaurante">
+              <PropertyRef Name="DonoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RestauranteMesa">
+          <End Type="BaseDados.Restaurante" Role="Restaurante" Multiplicity="1" />
+          <End Type="BaseDados.Mesa" Role="Mesa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurante">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mesa">
+              <PropertyRef Name="RestauranteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RestauranteReserva">
+          <End Type="BaseDados.Restaurante" Role="Restaurante" Multiplicity="1" />
+          <End Type="BaseDados.Reserva" Role="Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurante">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reserva">
+              <PropertyRef Name="RestauranteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ClienteReserva">
+          <End Type="BaseDados.Cliente" Role="Cliente" Multiplicity="1" />
+          <End Type="BaseDados.Reserva" Role="Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reserva">
+              <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MesaReserva">
+          <End Type="BaseDados.Mesa" Role="Mesa" Multiplicity="*" />
+          <End Type="BaseDados.Reserva" Role="Reserva" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Reserva">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mesa">
+              <PropertyRef Name="ReservaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
